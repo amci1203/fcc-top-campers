@@ -1,13 +1,6 @@
 import React from 'react';
 
-const links = ['Why?'],
-      linksJSX = () => {
-        let JSXString = ``;
-        links.each (link) => {
-          return (<li><a href='# + {link}'></a></li>)
-        }
-      }
-
+import Links from './nav-links.jsx';
 
 export default function MainNav (props) {
   return (
@@ -16,11 +9,7 @@ export default function MainNav (props) {
         <h1 className='main-nav__heading'>{ props.candidateName }</h1>
         <button className='main-nav__toggle' />
         <div className='main-nav__nav-links'>
-        <ul>
-          {
-
-          }
-        </ul>
+          <Links links={['about', 'skills', 'contacts']}/>
         </div>
       </div>
     </nav>

@@ -1,14 +1,18 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import MainHeader from './components/main-header.jsx';
 import MainNav from './components/main-nav.jsx';
+import MainHeader from './components/main-header.jsx';
+import Why from './components/why-section.jsx';
 
 function main (props) {
   return(
     <div>
       <MainNav candidateName='Allen McIntosh' />
-      <MainHeader />
+      <div id='landing'>
+        <MainHeader />
+        <Why />
+      </div>
     </div>
   )
 }
