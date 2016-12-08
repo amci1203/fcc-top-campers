@@ -1,0 +1,28 @@
+.page-section {
+    padding: 4.5rem 0;
+    &--dark {
+        background-color: #111;
+        color: #FFF;
+    }
+    &--blue {
+        background-color: $mainBlue;
+        color: #333;
+    }
+    &--pink {
+        font-size: 105%;
+        background-color: $mainPink;
+        color: #FFF;
+    }
+    &--no-b-padding-until-md {
+        padding: 0;
+        @mixin atMedium {
+            padding-bottom: 4.5rem
+        }
+    }
+    &--no-b-padding-until-lg {
+        padding: 0;
+        @mixin atLarge {
+            padding-bottom: 4.5rem
+        }
+    }
+}

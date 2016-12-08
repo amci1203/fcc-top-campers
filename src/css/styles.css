@@ -1,18 +1,35 @@
-@import 'normalize.css';
-
-* { box-sizing: border-box }
-
-.text-center { text-align: center }
-.text-right  { text-align: right  }
-.text-left   { text-align: left   }
-
-.wrapper {
-  max-width: 1200px;
-  padding: 0 20px;
-  margin: 0 auto;
-}
-
-.header {
-  min-height: 300px;
-  background-color: #CCC;
-}
+/* EXTERNAL STYLESHEETS */
+    @import 'normalize.css';
+/* GLOBALS */
+    @import 'base/_variables';
+    @import 'base/_mixins';
+    @import 'base/_global';
+/* ASSURED SINGLE USE */
+    @import 'modules/_header';
+    @import 'modules/_landing';
+    @import 'modules/_primary-nav';
+    @import 'modules/_footer';
+/* POTENTIAL REUSABLE */
+    @import 'modules/_content-list';
+/* REUSABLES */
+    @import 'modules/_btn';
+    @import 'modules/_feature-item';
+    @import 'modules/_generic-content-container';
+    @import 'modules/_page-section';
+    @import 'modules/_pull';
+    @import 'modules/_row';
+    @import 'modules/_section-title';
+    @import 'modules/_wrapper';
+/* RESPONSIVE GRID SYSTEM */
+    @import 'grid/col';
+    @import 'grid/2cols';
+    @import 'grid/3cols';
+    @import 'grid/4cols';
+    @import 'grid/5cols';
+    @import 'grid/6cols';
+    @import 'grid/7cols';
+    @import 'grid/8cols';
+    @import 'grid/9cols';
+    @import 'grid/10cols';
+    @import 'grid/11cols';
+    @import 'grid/12cols';
