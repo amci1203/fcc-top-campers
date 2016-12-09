@@ -7,8 +7,8 @@ import Why from './components/why-section.jsx';
 
 function main (props) {
   return(
-    <div>
-      <MainNav candidateName='Allen McIntosh' />
+    <div className='page-shadow'>
+      <MainNav candidateName='Allen McIntosh II' />
       <div id='landing'>
         <MainHeader />
         <Why />

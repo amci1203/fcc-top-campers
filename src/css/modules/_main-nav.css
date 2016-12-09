@@ -1,0 +1,158 @@
+.main-nav {
+  position: relative;
+  background-color: $mainBlue;
+  color: #FFF;
+  height: 80px;
+  border-bottom: 1px solid color($mainBlue b(5%));
+  box-shadow: 0 2px 3px rgba(200, 200, 200, 0.5);
+  &__toggle { display: none }
+  &__heading {
+    display: inline-block;
+    font-weight: 300;
+    font-size: 2rem;
+    a { @mixin noTextDecoration }
+  }
+  &__nav-links {
+    position: relative;
+    display: block;
+    float: right;
+    ul {
+      display: block;
+      margin: 0;
+    }
+    li {
+      list-style-type: none;
+      display: inline-block;
+      float: left;
+    }
+    a {
+      @mixin noTextDecoration;
+      display: block;
+      font-size: 1.2rem;
+      height: 80px;
+      width: 100%;
+      padding: 40px 25px;
+      @mixin atSmall {
+        padding: 25px 15px;
+      }
+      &:hover {
+        padding-bottom: 20px;
+        border-bottom: 5px solid $mainPink;
+      }
+    }
+  }
+}
+.main-nav {
+  @mixin isSmall {
+    height: 40px;
+    &__heading {
+      font-size: 1.25rem;
+    }
+    &__nav-links {
+      transition: margin 0.3s ease-out;
+      border-left: 2px solid color($mainBlue b(15%));
+      position: fixed;
+      height: 100%;
+      top: 0;
+      right: 0;
+      width: $mobileNavWidth;
+      margin-right: calc($mobileNavWidth * -1);
+      background-color: $mainBlue;
+      .open & {
+        margin-right: 0;
+        z-index: 300;
+      }
+      ul {
+        position: relative;
+        top: 120px;
+        margin: 0;
+        padding: 0;
+        width: $mobileNavWidth;
+      }
+      li {
+        display: block;
+        list-style: none;
+        padding-right: 7px;
+      }
+      a {
+        transition: background-color 0.3s ease-out;
+        display: block;
+        width: $mobileNavWidth;
+        height: auto;
+        padding: 25px 15px;
+        text-transform: capitalize;
+        &:hover {
+          border: none;
+          background-color: $mainPink;
+        }
+      }
+    }
+    &__toggle {
+      background: none;
+      border: none;
+      display: block;
+      .visible & {
+          position: fixed;
+          z-index: 500;
+          margin-top: 0;
+      }
+      transition: margin 0.3s ease-out;
+      @mixin atMedium { display: none }
+      position: absolute;
+      margin-top: -40px;
+      z-index: 300;
+      top: 10px;
+      right: 10px;
+      width: 20px;
+      height: 20px;
+      &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 20px;
+          height: 3px;
+          background-color: #FFF;
+          transition: transform 0.3s ease-out;
+      }
+      &__middle {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%) scaleX(1);
+          left: 0;
+          width: 20px;
+          height: 3px;
+          background-color: #FFF;
+          opacity: 1;
+          transition: all 0.3s ease-out;
+      }
+      &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 20px;
+          height: 3px;
+          background-color: #FFF;
+          transition: transform 0.3s ease-out;
+      }
+      .open & {
+          position: fixed;
+          margin-top: 0 !important;
+          &::before {
+              transform: rotate(45deg) scaleX(1.25);
+              transform-origin: top left;
+          }
+          &__middle {
+              transform: scaleX(0);
+              opacity: 0;
+              transform-origin: left;
+          }
+          &::after {
+              transform: rotate(-45deg) scaleX(1.25);
+              transform-origin: bottom left;
+          }
+      }
+    }
+  }
+}

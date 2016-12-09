@@ -4,6 +4,7 @@ const gulp = require('gulp'),
 const css = require('gulp-postcss'),
       colors = require('postcss-color-function'),
       imports = require('postcss-import'),
+      mixins = require('postcss-mixins'),
       nesting = require('postcss-nested'),
       math = require('postcss-calc'),
       vars = require('postcss-simple-vars');
@@ -22,9 +23,9 @@ gulp.task('transpileJs', () => {
 
 gulp.task('refreshJs', ['transpileJs'], () => browserSync.reload())
 
-gulp.task('postCss', () => {
+gulp.task('postCSS', () => {
   return gulp.src('./src/css/styles.css')
-  .pipe(css([imports, vars, nesting, math, colors]))
+  .pipe(css([imports, mixins, vars, nesting, math, colors]))
   .on('error', function (err) {
     console.error(err.toString());
     this.emit('end');
@@ -32,10 +33,16 @@ gulp.task('postCss', () => {
   .pipe(gulp.dest('./app'))
 })
 
-gulp.task('default', ['transpileJs', 'postCss'], () => {
+gulp.task('injectCSS', ['postCSS'], function () {
+  return gulp.src('./app/styles.css')
+  .pipe(browserSync.stream());
+});
+
+gulp.task('default', ['transpileJs', 'postCSS'], () => {
   browserSync.init({
+    notify: false,
     injectChanges: false, // workaround for Angular 2 styleUrls loading
-    files: ['./**/*.{html,htm,css,js}'],
+    files: ['./**/*.{html,htm,js}'],
     watchOptions: {
       ignored: 'node_modules'
     },
@@ -51,6 +58,6 @@ gulp.task('default', ['transpileJs', 'postCss'], () => {
     }
   })
 
-  watch('./src/css/**/*.css', () => gulp.start('postCss'))
+  watch('./src/css/**/*.css', () => gulp.start('injectCSS'))
   watch('./src/**/*.{js,jsx}', () => gulp.start('transpileJs'))
 })

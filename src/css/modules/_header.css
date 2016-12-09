@@ -1,17 +1,8 @@
 .header {
+    @mixin flat;
     width: 100%;
-    padding: 0;
+    padding: 1.65rem;
+    background-color: rgba(220, 220, 220, 0.75);
     border-bottom: 6px solid $mainPink;
-}
-
-.page-lock { overflow-y: hidden !important }
-.page-lock .page-shadow {
-    position: fixed;
-    display: block;
-    z-index: 200;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(75, 75, 75, 0.7);
+    text-align: center;
 }

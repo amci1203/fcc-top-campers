@@ -32,6 +32,7 @@
     "postcss-calc": "^5.3.1",
     "postcss-color-function": "^2.0.1",
     "postcss-import": "^9.0.0",
+    "postcss-mixins": "^5.4.0",
     "postcss-nested": "^1.0.0",
     "postcss-simple-vars": "^3.0.0",
     "webpack": "^1.14.0"
