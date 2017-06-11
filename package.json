@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/amci1203/andyet.hit.git"
+    "url": "git+ssh://git@bitbucket.org/amci1203/andyet.git"
   },
   "author": "Allen McIntosh II",
   "license": "ISC",

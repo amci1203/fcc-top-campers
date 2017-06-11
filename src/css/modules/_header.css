@@ -1,8 +1,0 @@
-.header {
-    @mixin flat;
-    width: 100%;
-    padding: 1.65rem;
-    background-color: rgba(220, 220, 220, 0.75);
-    border-bottom: 6px solid $mainPink;
-    text-align: center;
-}
