@@ -3,21 +3,22 @@ const
     watch    = require('gulp-watch'),
     webpack  = require('webpack')
     css      = require('gulp-postcss'),
+    pre      = require('precss'),
     math     = require('postcss-calc'),
+    prefixer = require('autoprefixer'),
     bs       = require('browser-sync').create(),
     fallback = require('connect-history-api-fallback'),
     log      = require('connect-logger');
 
-const plugins = [imports, mixins, vars, nesting, math, colors];
+const plugins = [pre, math, prefixer];
 
 gulp.task('transpileJs', () => {
-    webpack(require('./webpack.config.js'), (err, stats) {
-        console.log(err ? err.toString() : 'Script Packing Done...\n');
-        console.log(stats);
-    }
+    webpack(require('./webpack.config.js'), (err, stats) => {
+        console.log(err ? err.toString() : `Script Packing Done...\n${stats.toString()}`);
+    })
 })
 
-gulp.task('refreshJs', ['transpileJs'], browserSync.reload)
+gulp.task('refreshJs', ['transpileJs'], bs.reload)
 
 gulp.task('postCSS', () => {
     return gulp.src('./app/assets/styles.css')
@@ -31,14 +32,14 @@ gulp.task('postCSS', () => {
 
 gulp.task('injectCSS', ['postCSS'], () => {
     return gulp.src('./app/styles.css')
-        .pipe(browserSync.stream());
+        .pipe(bs.stream());
 });
 
 gulp.task('default', ['transpileJs', 'postCSS'], () => {
     bs.init({
         notify: false,
         // workaround for Angular 2 styleUrls loading
-        injectChanges: false,
+        // injectChanges: false,
         files: ['./**/*.{html,htm,js}'],
         watchOptions: { ignored: 'node_modules' },
         server: {
@@ -54,6 +55,6 @@ gulp.task('default', ['transpileJs', 'postCSS'], () => {
         }
     })
 
-    watch('./src/css/**/*.css', () => gulp.start('injectCSS'))
-    watch('./src/**/*.{js,jsx}', () => gulp.start('transpileJs'))
+    watch('./app/assets/styles.css', () => gulp.start('injectCSS'))
+    watch('./app/assets/app.jsx', () => gulp.start('transpileJs'))
 })

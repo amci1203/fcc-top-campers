@@ -1,15 +1,18 @@
-const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
     entry: './app/assets/app.jsx',
-    output: './app/app.js',
-    module : {
-        loaders : [
+    output: {
+        path: path.resolve('app'),
+        filename: 'app.js'
+    },
+    module: {
+        loaders: [
             {
-                test : /\.jsx?/,
-                include : './app/assets',
-                loader : 'babel'
+                test: /\.jsx$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/
             }
         ]
     }
-};
+}
